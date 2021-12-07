@@ -14,7 +14,7 @@
 #' ryt_auth()
 #'
 #' # get list of your videos
-#' videos <- ryt_get_video_list()
+#' videos <- ryt_get_videos()
 #'
 #' # function for loading video stat
 #' get_videos_stat <- function(video_id) {
@@ -66,7 +66,7 @@ ryt_get_analytics <- function(
     params   = list(startDate = start_date,
                     endDate = end_date,
                     ids = 'channel==MINE',
-                    dimensions = 'day',
+                    dimensions = dimensions,
                     filters = filters,
                     metrics = metrics),
     token    = ryt_token(),

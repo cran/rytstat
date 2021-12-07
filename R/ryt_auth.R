@@ -7,7 +7,7 @@
 ## The roxygen comments for these functions are mostly generated from data
 ## in this list and template text maintained in gargle.
 gargle_lookup_table <- list(
-  PACKAGE     = "ryoutube",
+  PACKAGE     = "rytstat",
   YOUR_STUFF  = "your YouTube Account",
   PRODUCT     = "YouTube",
   API         = "YouTube API",
@@ -67,11 +67,12 @@ ryt_auth <- function(
                 'https://www.googleapis.com/auth/youtube.readonly',
                 'https://www.googleapis.com/auth/youtubepartner',
                 'https://www.googleapis.com/auth/yt-analytics-monetary.readonly',
-                'https://www.googleapis.com/auth/yt-analytics.readonly'),
+                'https://www.googleapis.com/auth/yt-analytics.readonly',
+                'https://www.googleapis.com/auth/youtube.force-ssl'),
     app     = app,
     email   = email,
     path    = path,
-    package = "ryoutube",
+    package = "rytstat",
     cache   = cache,
     use_oob = use_oob,
     token   = token
@@ -81,7 +82,7 @@ ryt_auth <- function(
   if (!inherits(cred, "Token2.0")) {
     stop(
       "Can't get Google credentials.\n",
-      "Are you running ryoutube in a non-interactive session? Consider:\n",
+      "Are you running rytstat in a non-interactive session? Consider:\n",
       "  * Call `ryt_auth()` directly with all necessary specifics.\n",
       call. = FALSE
     )
@@ -302,7 +303,7 @@ ryt_user <- function() {
 ryt_default_ouath_app <- function() {
 
   app <- httr::oauth_app(
-    'ryoutube_main_app',
+    'rytstat_main_app',
     '555180316828-245bk1lh7pqd3gpmfk4o2qedenh0tot7.apps.googleusercontent.com',
     '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'
   )

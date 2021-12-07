@@ -1,30 +1,29 @@
-ryt_get_video_details_helper <- function(
-  video_id,
+ryt_get_playlist_items_helper <- function(
+  playlist_id,
   fields = c('contentDetails',
-             'fileDetails',
              'id',
-             'liveStreamingDetails',
-             'localizations',
-             'player',
-             'processingDetails',
-             'recordingDetails',
              'snippet',
-             'statistics',
-             'status',
-             'suggestions',
-             'topicDetails')
+             'status')
 ) {
+
 
   fields <- paste0(fields, collapse = ",")
 
+  q_params <- list(
+    playlistId = playlist_id,
+    part = fields,
+    maxResults = 50
+  )
+
+  result <- list()
+
+  while (!is.null(q_params$pageToken)|!exists('resp', inherits = FALSE)) {
+
   out <- request_build(
     method   = "GET",
-    params   = list(
-      id = video_id,
-      part = fields
-    ),
+    params   = q_params,
     token    = ryt_token(),
-    path     = 'youtube/v3/videos',
+    path     = 'youtube/v3/playlistItems',
     base_url = 'https://www.googleapis.com/'
   )
 
@@ -36,12 +35,19 @@ ryt_get_video_details_helper <- function(
 
   resp <- response_process(ans)
 
-  result <- tibble(items = resp$items) %>%
-    unnest_wider(.data$items)
+  result <- append(result, list(resp$items))
+
+  q_params$pageToken <- resp$nextPageToken
+
+  }
+
+
+  result <- tibble(items = result) %>%
+            unnest_longer(.data$items) %>%
+            unnest_wider(.data$items)
 
   nested_fields <- select(result, where(is.list)) %>%
-    names()
-  nested_fields <- nested_fields[!nested_fields %in% c("tags", "topicDetails")]
+                   names()
 
   while ( length(nested_fields) > 0 ) {
 
@@ -65,6 +71,7 @@ ryt_get_video_details_helper <- function(
     nested_fields <- nested_fields[!nested_fields %in% c("tags", "topicDetails")]
 
   }
+
 
   return(result)
 

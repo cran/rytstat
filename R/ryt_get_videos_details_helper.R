@@ -1,6 +1,6 @@
 ryt_get_video_details_helper <- function(
   video_id,
-  fields = c('contentDetails',
+  part   = c('contentDetails',
              'fileDetails',
              'id',
              'liveStreamingDetails',
@@ -12,16 +12,18 @@ ryt_get_video_details_helper <- function(
              'statistics',
              'status',
              'suggestions',
-             'topicDetails')
+             'topicDetails'),
+  fields = NULL
 ) {
 
-  fields <- paste0(fields, collapse = ",")
+  part <- paste0(part, collapse = ",")
 
   out <- request_build(
     method   = "GET",
     params   = list(
-      id = video_id,
-      part = fields
+      id     = video_id,
+      part   = part,
+      fields = fields
     ),
     token    = ryt_token(),
     path     = 'youtube/v3/videos',
@@ -37,10 +39,9 @@ ryt_get_video_details_helper <- function(
   resp <- response_process(ans)
 
   result <- tibble(items = resp$items) %>%
-    unnest_wider(.data$items)
+            unnest_wider(.data$items)
 
-  nested_fields <- select(result, where(is.list)) %>%
-    names()
+  nested_fields <- select(result, where(is.list)) %>% names()
   nested_fields <- nested_fields[!nested_fields %in% c("tags", "topicDetails")]
 
   while ( length(nested_fields) > 0 ) {

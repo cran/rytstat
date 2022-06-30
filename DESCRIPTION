@@ -1,6 +1,6 @@
 Package: rytstat
 Title: Work with 'YouTube API'
-Version: 0.2.1
+Version: 0.3.0
 Authors@R: 
     c(person(given  = "Alexey",
              family = "Seleznev",
@@ -19,11 +19,11 @@ URL: https://selesnow.github.io/rytstat/docs/
 BugReports: https://github.com/selesnow/rytstat/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 NeedsCompilation: no
-Packaged: 2021-12-07 21:35:59 UTC; SAMSUNG
+Packaged: 2022-06-30 17:01:47 UTC; SAMSUNG
 Author: Alexey Seleznev [aut, cre] (<https://orcid.org/0000-0003-0410-7385>),
   Netpeak [cph]
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Repository: CRAN
-Date/Publication: 2021-12-07 21:50:02 UTC
+Date/Publication: 2022-06-30 17:20:02 UTC

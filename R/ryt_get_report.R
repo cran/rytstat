@@ -169,8 +169,11 @@ ryt_get_report_list <- function(
   ) {
 
   q_params <- list(
-
+    createdAfter = created_after,
+    startTimeAtOrAfter = start_time_at_or_after,
+    startTimeBefore = start_time_before
   )
+
   result   <- list()
 
   while (!is.null(q_params$pageToken)|!exists('resp', inherits = FALSE)) {
@@ -196,6 +199,11 @@ ryt_get_report_list <- function(
   }
 
   cli_alert_info('Parse result')
+  if (is.null(result[[1]])) {
+    cli_alert_warning("Empty answer, change filter parameters ant try again!")
+    return(NULL)
+  }
+
   result <- tibble(items = result) %>%
             unnest_longer(.data$items) %>%
             unnest_wider(.data$items)

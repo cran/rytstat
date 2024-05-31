@@ -202,7 +202,7 @@ ryt_delete_job(jobs$id[1])
 ```
 
 ## Author
-Alexey Seleznev, Head of analytics dept. at [Netpeak](https://netpeak.net/en/us/)
+Alexey Seleznev, Head of analytics dept. at [Netpeak](https://netpeak.us/)
 <Br>Telegram Channel: [R4marketing](https://t.me/R4marketing)
 <Br>YouTube Channel: [R4marketing](https://www.youtube.com/R4marketing/?sub_confirmation=1)
 <Br>email: selesnow@gmail.com

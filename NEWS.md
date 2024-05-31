@@ -1,3 +1,33 @@
+# rytstat 0.3.2
+* Исправлена ошибка в функции `ryt_get_analytics()`:
+
+```
+! Can't unnest elements with missing names.
+i Supply `names_sep` to generate automatic names.
+```
+
+# rytstat 0.3.1
+* В функцию `ryt_get_videos()` добавлен аргумент `fields`, позволяющий указать нужные поля.
+* В функцию `ryt_get_analytics()` добавлены следующие аргументы:
+    * `sort` - Сортировка данных в отчёте
+    * `max_results` - Ограничение на количество строк в отчёте
+    * `start_index` - Начальный индекс строки, с которой необходимо получить данные.
+
+Новые аргументы функции `ryt_get_analytics()` позволяют запрашивать топ видео за указанный период.
+```r
+# top video
+  top_10_by_view <- ryt_get_analytics(
+    '2022-06-01', '2022-06-30', 
+    metrics = 'views',
+    dimensions = 'video',
+    sort = '-views', 
+    max_results = 10
+  )
+  
+```
+* Исправлена ошибка в функции `ryt_get_report_list()`, изза которой не работали аргументы `created_after`, `start_time_at_or_after`, `start_time_before`.
+* В случае если запрос `ryt_get_report_list()` не вернул никаких результатов, работа функции будет остановлена, а сама функция вернёт `NULL`. Ранее в таком случае функция возвращала таблицу из одного безымянного столбца и пустой строки.
+
 # rytstat 0.3.0
 
 ## Новая функция

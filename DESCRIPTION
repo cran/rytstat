@@ -1,6 +1,6 @@
 Package: rytstat
 Title: Work with 'YouTube API'
-Version: 0.3.0
+Version: 0.3.2
 Authors@R: 
     c(person(given  = "Alexey",
              family = "Seleznev",
@@ -21,9 +21,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.0
 NeedsCompilation: no
-Packaged: 2022-06-30 17:01:47 UTC; SAMSUNG
+Packaged: 2024-05-31 06:53:24 UTC; SAMSUNG
 Author: Alexey Seleznev [aut, cre] (<https://orcid.org/0000-0003-0410-7385>),
   Netpeak [cph]
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Repository: CRAN
-Date/Publication: 2022-06-30 17:20:02 UTC
+Date/Publication: 2024-05-31 07:10:02 UTC
